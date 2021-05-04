@@ -1,0 +1,21 @@
+version: '3.3'
+
+services:
+  springboot-docker-secrets:
+    container_name: springboot-docker-secrets
+    image: springboot-docker-secrets:0.0.1-SNAPSHOT
+    ports:
+      - 8080:8080
+    environment:
+      SPRING_CONFIG_IMPORT: configtree:/run/secrets/
+      DB_USERNAME: /run/secrets/db_username
+      DB_PASSWORD: /run/secrets/db_password
+    secrets:
+      - db_username
+      - db_password
+
+secrets:
+  db_username:
+    external: true
+  db_password:
+    external: true
