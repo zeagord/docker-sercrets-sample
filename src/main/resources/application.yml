@@ -1,0 +1,13 @@
+#spring.config.import=optional:configtree:/run/secrets/
+server:
+  port: 8081
+#logging.logstash:
+  ##  enabled: true
+  ##  url: localhost:5000
+
+  logstash.host : localhost
+  logstash.port : 5000
+  logstash.queue-size : 512
+spring:
+  application:
+    name: microserviceA

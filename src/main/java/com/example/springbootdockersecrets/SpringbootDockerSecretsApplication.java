@@ -14,16 +14,21 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class SpringbootDockerSecretsApplication {
 
-  @Value("${db_username}")
-  public String dbUserNamePath;
+  //@Value("${db_username}")
+  //public String dbUserNamePath;
 
   public static void main(String[] args) {
+
     SpringApplication.run(SpringbootDockerSecretsApplication.class, args);
   }
 
   @GetMapping("/greet")
   public String greet() throws IOException {
-    String dbUserName = new String(Files.readAllBytes(Paths.get(dbUserNamePath)));
-    return "Hello the db username is " + dbUserName;
+    var mySecret = System.getenv("MY_SECRET");
+    var mySecret2 = System.getenv("ANOTHER_SECRET");
+
+    //String dbUserName = new String(Files.readAllBytes(Paths.get(dbUserNamePath)));
+    System.out.println("Hello your secret is " + mySecret + " and" + mySecret2);
+    return "Hello the db username is "; // + dbUserName;
   }
 }
